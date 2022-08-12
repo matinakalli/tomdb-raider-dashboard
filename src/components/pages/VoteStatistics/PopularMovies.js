@@ -3,9 +3,9 @@ import styled from "styled-components";
 import TomdbRaiderApi from "../../../API/TomdbRaiderApi";
 import Header from "../../common/Header";
 import React from "react";
-import PieChart from "./Charts/PieChart";
+import PieChart from "../../common/Charts/PieChart";
 import { FlexContainer } from "../../common/FlexContainer";
-import DoughnutChart from "./Charts/DoughnutChart";
+import DoughnutChart from "../../common/Charts/DoughnutChart";
 
 function PopularMovies() {
   const [topTenLabels, setTopTenLabels] = useState([]);

@@ -40,7 +40,7 @@ function BarChart({
       },
     },
   };
-  console.log(dataset3);
+
   const data = {
     labels,
     datasets: [
@@ -57,7 +57,11 @@ function BarChart({
     ],
   };
 
-  return <Bar options={options} data={data} />;
+  return (
+    <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+      <Bar options={options} data={data} />
+    </div>
+  );
 }
 
 export default BarChart;

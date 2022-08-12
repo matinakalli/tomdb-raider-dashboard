@@ -26,7 +26,7 @@ const MenuItemContainer = styled(NavLink)`
   padding: 5px 0;
   color: ${(props) => props.defaultmenucolor};
   text-decoration: none;
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 1.2px;
 
   &:hover {

@@ -12,7 +12,8 @@ const SideMenu = () => {
   return (
     <SideMenuContainer fontColor={fontColor} secondaryColor={secondaryColor}>
       <MenuItem name="Home" route="/" />
-      <MenuItem name="Statistics" route="/statistics" />
+      <MenuItem name="Vote Statistics" route="/vote-statistics" />
+      <MenuItem name="Movie Providers" route="/movie-providers" />
       <MenuItem name="Settings" route="/settings" />
     </SideMenuContainer>
   );

@@ -18,7 +18,8 @@ You will also see any lint errors in the console.
 ## Description and Different Pages in the Dashboard.
 
 <b>Home</b>: Just a simple plain Home Page
-<b>Statistics</b>: See Statistics in different Chart.js Charts
+<b>Vote Statistics</b>: See Vote Statistics for top 10 best and worst movies.
+<b>Movie Providers</b>: Search for a Movie and see which Providers are used most for rentind and buying all over the world.
 <b>Settings</b>: Make Theme Changes
 
  

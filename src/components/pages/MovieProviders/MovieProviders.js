@@ -3,11 +3,17 @@ import styled from "styled-components";
 import TomdbRaiderApi from "../../../API/TomdbRaiderApi";
 import Header from "../../common/Header";
 import React from "react";
-import BarChart from "./Charts/BarChart";
+import BarChart from "../../common/Charts/BarChart";
+import Search from "./Search";
+import { useStores } from "../../../stores/useStores";
+import { observer } from "mobx-react-lite";
 
-function AvengersWatchProviders() {
+function MovieProviders() {
   const [rentProviders, setRentProviders] = useState([]);
   const [buyProviders, setBuyProviders] = useState([]);
+  const {
+    moviesStore: { selectedMovieId, selectedMovieTitle },
+  } = useStores();
 
   function getProviderCountByType(type, label) {
     if (type === undefined) {
@@ -19,7 +25,7 @@ function AvengersWatchProviders() {
   }
 
   useEffect(() => {
-    TomdbRaiderApi.getWatchProviders(24428).then(({ data }) => {
+    TomdbRaiderApi.getWatchProviders(selectedMovieId).then(({ data }) => {
       const { results } = data;
       let countRentForITunes = 0;
       let countRentForGPlay = 0;
@@ -28,7 +34,6 @@ function AvengersWatchProviders() {
       let countBuyForGPlay = 0;
       let countBuyForMicrosoft = 0;
       Object.entries(results).forEach((country) => {
-        console.log(country);
         countRentForITunes =
           getProviderCountByType(country[1].rent, "Apple iTunes").length > 0
             ? countRentForITunes + 1
@@ -70,16 +75,20 @@ function AvengersWatchProviders() {
         countBuyForMicrosoft,
       ]);
     });
-  }, []);
+  }, [selectedMovieId]);
 
   const labels = ["Apple iTunes", "Google Play Movies", "Microsoft Store"];
 
   const datasetLabels = ["Rent", "Buy"];
 
   return (
-    <AvengersWatchProvidersContainer>
+    <MovieProvidersContainer>
+      <Header showHr={true}>
+        <h2>Movie Providers</h2>
+      </Header>
+      <Search />
       <Header>
-        <Title>Top 3 Watch Providers for Avengers</Title>
+        <Title>Top 3 Watch Providers for '{selectedMovieTitle}'</Title>
       </Header>
 
       {rentProviders.length > 0 && buyProviders.length > 0 && (
@@ -91,13 +100,13 @@ function AvengersWatchProviders() {
           chartTitle="According to each Country usage"
         />
       )}
-    </AvengersWatchProvidersContainer>
+    </MovieProvidersContainer>
   );
 }
 
-export default AvengersWatchProviders;
+export default observer(MovieProviders);
 
-const AvengersWatchProvidersContainer = styled.div`
+const MovieProvidersContainer = styled.div`
   margin: 70px 20px;
 `;
 const Title = styled.h3`
